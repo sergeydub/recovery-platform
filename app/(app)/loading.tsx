@@ -4,9 +4,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 // stream in behind this placeholder while the top bar renders immediately.
 export default function Loading() {
   return (
-    <main className="flex flex-1 flex-col gap-4 p-6">
+    <div className="flex flex-1 flex-col gap-4 p-6">
       <Skeleton className="h-8 w-48" />
       <Skeleton className="h-32 w-full" />
-    </main>
+    </div>
   );
 }
