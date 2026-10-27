@@ -1,13 +1,9 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
-
-// Everything except the auth pages requires a signed-in user.
-export default clerkMiddleware(async (auth, req) => {
-  if (!isPublicRoute(req)) {
-    await auth.protect();
-  }
-});
+// Only attaches the Clerk session to each request. Access checks live next to
+// the data, in lib/auth.ts, so a page or action can't be reached by a path the
+// proxy didn't anticipate.
+export default clerkMiddleware();
 
 export const config = {
   matcher: [
